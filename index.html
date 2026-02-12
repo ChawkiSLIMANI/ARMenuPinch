@@ -40,6 +40,17 @@
 
 <body>
   <!-- Video element for Camera Feed -->
+  <!-- Import Map for Three.js -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+      }
+    }
+  </script>
+
+  <!-- video element and scripts follow -->
   <video id="camera-feed" playsinline webkit-playsinline muted autoplay></video>
 
   <!-- MediaPipe Dependencies via CDN -->
