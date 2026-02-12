@@ -1,5 +1,5 @@
-import { Hands, HAND_CONNECTIONS } from '@mediapipe/hands';
-import { Camera } from '@mediapipe/camera_utils';
+// import { Hands, HAND_CONNECTIONS } from '@mediapipe/hands';
+// import { Camera } from '@mediapipe/camera_utils';
 import * as THREE from 'three';
 
 let hands;
@@ -18,6 +18,18 @@ const PINCH_THRESHOLD = 0.05;
 export async function initHandTracker(inputVideo) {
     if (!inputVideo) {
         console.error("initHandTracker: inputVideo element is required.");
+        return;
+    }
+
+    // Access globals loaded via CDN in index.html
+    // Force a short delay to ensure scripts are loaded if race condition occurs 
+    // (though script tags are blocking by default before module)
+
+    const Hands = window.Hands;
+    const Camera = window.Camera; // If we used Camera Utils, but we use getUserMedia now.
+
+    if (!Hands) {
+        console.error("MediaPipe Hands not loaded! Check network or CDN links.");
         return;
     }
 
@@ -54,7 +66,7 @@ export async function initHandTracker(inputVideo) {
 
     } catch (error) {
         console.error("Error accessing camera:", error);
-        alert("Camera access denied or unavailable.");
+        alert("Camera access denied or unavailable: " + error.message);
     }
 }
 
