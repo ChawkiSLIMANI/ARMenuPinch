@@ -1,6 +1,9 @@
 import { initEngine } from './src/engine.js';
 import { initHandTracker, getHandStatus } from './src/handTracker.js';
 import { updateInteraction } from './src/interaction.js';
+import { initDebug } from './src/debug.js';
+
+initDebug();
 
 async function main() {
     const videoElement = document.getElementById('camera-feed');
